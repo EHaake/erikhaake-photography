@@ -1,6 +1,5 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import colors from 'colors';
 import morgan from 'morgan';
 
 dotenv.config();
@@ -11,14 +10,13 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('API is running...');
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(
-  PORT,
+app.listen(PORT, () => {
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`.yellow.bold
-  )
-);
+    `Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`
+  );
+});
